@@ -1,5 +1,5 @@
 # MNIST
-![Build Status](https://github.com/cr21/mnist-less-than-25k/blob/main/.github/workflows/test_model.yml/badge.svg)
+[![Python Test](https://github.com/cr21/mnist-less-than-25k/actions/workflows/test_model.yml/badge.svg)](https://github.com/cr21/mnist-less-than-25k/actions/workflows/test_model.yml)
 ## Objective
 - Achieve >95 % test accuracy with below constraint
 1. Total parameters should less than 25k
