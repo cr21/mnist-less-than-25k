@@ -38,4 +38,4 @@ def test_gap_exists(model):
 
 def test_accuracy():
     train_accuracy, test_accuracy = main()
-    assert test_accuracy >= 95.0, f"Test accuracy is {test_accuracy}%, should be at least 95%"
+    assert test_accuracy >= 99.4, f"Test accuracy is {test_accuracy}%, should be at least 95%"
