@@ -40,6 +40,41 @@ class Net(nn.Module):
         x = self.fc1(x)
         return F.log_softmax(x, dim=1)
 
+class Net(nn.Module):
+    def __init__(self):
+        super(Net, self).__init__()
+        self.conv1 = nn.Conv2d(1, 16, 3, padding=1) #input -? OUtput? RF
+        #nn.BatchNorm2d(16)
+        self.bn1 = nn.BatchNorm2d(16)
+        self.conv2 = nn.Conv2d(16, 32, 3, padding=1)
+        self.bn2 = nn.BatchNorm2d(32)
+        self.pool1 = nn.MaxPool2d(2, 2)
+        self.conv1d_1 =  nn.Conv2d(32,8, 1)
+        self.conv3 = nn.Conv2d(8, 16, 3, padding=1)
+        self.bn3 = nn.BatchNorm2d(16)
+        self.conv4 = nn.Conv2d(16, 32, 3, padding=1)
+        self.bn4 = nn.BatchNorm2d(32)
+        self.pool2 = nn.MaxPool2d(2, 2)
+        self.conv1d_2 =  nn.Conv2d(32,8,1,stride=1)
+        self.conv5 = nn.Conv2d(8, 16, 3)
+        self.bn5 = nn.BatchNorm2d(16)
+        self.conv6 = nn.Conv2d(16, 32, 3)
+        self.bn6 = nn.BatchNorm2d(32)
+        self.conv1d_3 =  nn.Conv2d(32,8,1,stride=1)
+        self.bn7 = nn.BatchNorm2d(8)
+        self.fc = nn.Linear(72,10)
+        self.dropout = nn.Dropout(0.1)
+        
+
+    def forward(self, x):
+        x = self.conv1d_1(self.pool1(F.relu(self.bn2(self.conv2(F.relu(self.bn1(self.conv1(x))))))))
+        x = self.dropout(x)
+        x = self.conv1d_2(self.pool2(F.relu(self.bn4(self.conv4(F.relu(self.bn3(self.conv3(x))))))))
+        x = F.relu(self.bn6(self.conv6(F.relu(self.bn5(self.conv5(x))))))
+        x = F.relu(self.bn7(self.conv1d_3(x)))
+        x = x.view(x.size(0), -1) 
+        return F.log_softmax(F.relu(self.fc(x)))
+
 
 def test(model, device, test_loader):
     model.eval()
@@ -92,10 +127,11 @@ def main():
     print(f'Total Parameters: {total_params}')
     assert total_params <= 25_000, "Model should have less than 25000 parameters."
     use_cuda = torch.cuda.is_available()
-    device = torch.device("cuda" if use_cuda else "cpu")
+    use_mps = torch.backends.mps.is_available()
+    device = torch.device("cuda" if use_cuda  else "cpu")
     model.to(device)
     torch.manual_seed(1)
-    batch_size=64
+    batch_size=128
     kwargs = {'num_workers': 1, 'pin_memory': True} if use_cuda else {}
 
     # Update the data loaders to include data augmentation
@@ -118,7 +154,7 @@ def main():
         batch_size=batch_size, shuffle=True, **kwargs)
 
     optimizer = optim.Adam(model.parameters(), lr=0.001)
-    epochs = 1
+    epochs = 20
 
     for epoch in range(1, epochs + 1):
         train_accuracy = train(model, device, train_loader, optimizer, epoch)
