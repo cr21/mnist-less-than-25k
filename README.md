@@ -1,5 +1,5 @@
 # MNIST
-![Build Status](https://github.com/cr21/mnist-less-than-25k/blob/main/.github/workflows/test_model.yml/badge.svg)
+[![Python Test](https://github.com/cr21/mnist-less-than-25k/actions/workflows/test_model.yml/badge.svg)](https://github.com/cr21/mnist-less-than-25k/actions/workflows/test_model.yml)
 ## Objective
 - Achieve >99.4 % test accuracy with below constraint
 1. Total parameters should less than 25k
@@ -176,32 +176,5 @@ Loss=0.0244 Batch_id=468: 100%|████████████████�
 
 Test set: Average loss: 0.0237, Accuracy: 9936/10000 (99.4%)
 
-Epoch 15: Train Accuracy: 98.90%, Test Accuracy: 99.36%
-Loss=0.0355 Batch_id=468: 100%|███████████████████████████████████| 469/469 [02:03<00:00,  3.81it/s, acc=98.91%]
-
-Test set: Average loss: 0.0212, Accuracy: 9939/10000 (99.4%)
-
-Epoch 16: Train Accuracy: 98.91%, Test Accuracy: 99.39%
-Loss=0.0326 Batch_id=468: 100%|███████████████████████████████████| 469/469 [02:01<00:00,  3.88it/s, acc=99.03%]
-
-Test set: Average loss: 0.0169, Accuracy: 9946/10000 (99.5%)
-
-Epoch 17: Train Accuracy: 99.03%, Test Accuracy: 99.46%
-Loss=0.0196 Batch_id=468: 100%|███████████████████████████████████| 469/469 [02:03<00:00,  3.81it/s, acc=98.96%]
-
-Test set: Average loss: 0.0269, Accuracy: 9913/10000 (99.1%)
-
-Epoch 18: Train Accuracy: 98.96%, Test Accuracy: 99.13%
-Loss=0.0054 Batch_id=468: 100%|███████████████████████████████████| 469/469 [01:46<00:00,  4.41it/s, acc=99.01%]
-
-Test set: Average loss: 0.0210, Accuracy: 9939/10000 (99.4%)
-
-Epoch 19: Train Accuracy: 99.01%, Test Accuracy: 99.39%
-Loss=0.0396 Batch_id=468: 100%|███████████████████████████████████| 469/469 [01:49<00:00,  4.27it/s, acc=99.01%]
-
-Test set: Average loss: 0.0204, Accuracy: 9945/10000 (99.5%)
-
-Epoch 20: Train Accuracy: 99.01%, Test Accuracy: 99.45%
-
+Epoch 1: Train Accuracy: 89.66%, Test Accuracy: 98.18%
 ```
-
